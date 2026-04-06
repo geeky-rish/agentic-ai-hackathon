@@ -13,7 +13,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Agentic AI Hackathon 2026 | KLE Technological University",
   description:
-    "Build the future with autonomous AI systems. Join us for two days of expert-led sessions and an exciting hackathon at KLE Tech — April 25–26, 2026.",
+    "Build the future with autonomous AI systems. Join us for two days of  engaging sessions and an exciting hackathon at KLE Tech — April 25–26, 2026.",
   keywords: [
     "Agentic AI",
     "Hackathon",

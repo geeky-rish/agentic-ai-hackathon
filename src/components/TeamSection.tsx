@@ -14,7 +14,7 @@ const teamCategories = [
   {
     title: "Faculty Coordinators",
     members: [
-      { name: "Amit K", role: "Assistant Professor, CSE(AI)" }],
+      { name: "Amit Kachavimath", role: "Assistant Professor, CSE(AI)" }],
   },
   {
     title: "Student Organizers",

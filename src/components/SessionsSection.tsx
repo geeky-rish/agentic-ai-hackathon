@@ -61,7 +61,7 @@ export default function SessionsSection() {
             Day 1 — April 25, 2026
           </div>
           <h2 className="section-title mb-6">
-            <span className="text-foreground">Expert-Led </span>
+            <span className="text-foreground"> engaging </span>
             <span className="gradient-text">Sessions</span>
           </h2>
           <p className="text-lg text-foreground/60 leading-relaxed">

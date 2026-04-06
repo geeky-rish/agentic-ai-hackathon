@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
 
+const isGithubPages = process.env.GITHUB_ACTIONS === 'true';
+
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/agentic-ai-hackathon',
-  assetPrefix: '/agentic-ai-hackathon/',
+  basePath: isGithubPages ? '/agentic-ai-hackathon' : '',
+  assetPrefix: isGithubPages ? '/agentic-ai-hackathon/' : '',
   images: {
     unoptimized: true,
   },
