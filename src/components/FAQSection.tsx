@@ -13,7 +13,7 @@ const faqs = [
   {
     question: "What is the team size?",
     answer:
-      "Teams can have 3 to 4 members. You can form your own team or join one during the event.",
+      "Teams can have 3 to 4 members. You can form your own team.",
   },
   {
     question: "Is prior AI/ML experience required?",
