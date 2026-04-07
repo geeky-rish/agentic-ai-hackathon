@@ -110,32 +110,35 @@ export default function HackathonSection() {
           </p>
         </motion.div>
 
-        {/* Prize Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {prizes.map((prize, i) => (
-            <motion.div
-              key={prize.rank}
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
-              className={`glass-card p-8 text-center relative overflow-hidden border ${prize.border} shadow-lg ${prize.glow} ${
-                i === 0 ? "md:-translate-y-4" : ""
-              }`}
-            >
-              {/* Glow background */}
-              <div className={`absolute inset-0 bg-gradient-to-b ${prize.bg} opacity-50`} />
+        {/* Prize Cards — Podium Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto items-end">
+          {prizes.map((prize, i) => {
+            // Podium order: 2nd (left) → 1st (center) → 3rd (right)
+            const podiumOrder = i === 0 ? 'md:order-2' : i === 1 ? 'md:order-1' : 'md:order-3';
 
-              <div className="relative z-10">
-                <span className="text-5xl mb-4 block">{prize.icon}</span>
-                <span className={`text-xs font-bold tracking-widest uppercase bg-gradient-to-r ${prize.gradient} bg-clip-text text-transparent`}>
-                  {prize.label}
-                </span>
-                <div className={`text-4xl md:text-5xl font-black mt-3 bg-gradient-to-r ${prize.gradient} bg-clip-text text-transparent`}>
-                  {prize.amount}
+            return (
+              <motion.div
+                key={prize.rank}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
+                className={`glass-card p-8 text-center relative overflow-hidden border ${prize.border} shadow-lg ${prize.glow} ${podiumOrder}`}
+              >
+                {/* Glow background */}
+                <div className={`absolute inset-0 bg-gradient-to-b ${prize.bg} opacity-50`} />
+
+                <div className="relative z-10">
+                  <span className="text-5xl mb-4 block">{prize.icon}</span>
+                  <span className={`text-xs font-bold tracking-widest uppercase bg-gradient-to-r ${prize.gradient} bg-clip-text text-transparent`}>
+                    {prize.label}
+                  </span>
+                  <div className={`text-4xl md:text-5xl font-black mt-3 bg-gradient-to-r ${prize.gradient} bg-clip-text text-transparent`}>
+                    {prize.amount}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
