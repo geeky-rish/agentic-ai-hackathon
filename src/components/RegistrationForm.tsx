@@ -119,11 +119,19 @@ export default function RegistrationForm() {
     });
   };
 
-  /* ─── Validation ─── */
+  /* ─── Validation helpers ─── */
+  const isValidName = (v: string) => /^[a-zA-Z\s]{2,}$/.test(v.trim());
+  const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+  const isValidPhone = (v: string) => /^\d{10}$/.test(v.trim());
+
   const isStep1Valid = form.teamName.trim().length >= 2;
 
   const isMemberValid = (m: MemberInfo) =>
-    m.name.trim() && m.email.trim() && m.phone.trim() && m.yearOfStudy && m.collegeName.trim();
+    isValidName(m.name) &&
+    isValidEmail(m.email) &&
+    isValidPhone(m.phone) &&
+    m.yearOfStudy !== "" &&
+    m.collegeName.trim().length >= 2;
 
   const isStep2Valid =
     isMemberValid(form.member1) &&
@@ -207,10 +215,28 @@ export default function RegistrationForm() {
     exit: { opacity: 0, x: -40 },
   };
 
-  /* ─── Input class ─── */
+  /* ─── Input classes ─── */
   const inputCls =
     "w-full px-3.5 py-2.5 rounded-lg bg-white/[0.03] border border-white/10 text-sm text-foreground placeholder:text-foreground/25 focus:outline-none focus:border-accent/40 focus:ring-1 focus:ring-accent/20 transition-all";
+  const inputErrCls =
+    "w-full px-3.5 py-2.5 rounded-lg bg-red-500/[0.03] border border-red-400/30 text-sm text-foreground placeholder:text-foreground/25 focus:outline-none focus:border-red-400/50 focus:ring-1 focus:ring-red-400/20 transition-all";
   const selectCls = `${inputCls} appearance-none cursor-pointer`;
+  const errMsg = "text-[11px] text-red-400/80 mt-1";
+
+  /* ─── Per-field error: only show after user has touched the field ─── */
+  const getErr = (value: string, type: "name" | "email" | "phone" | "college") => {
+    if (!value.trim()) return null; // don't nag empty fields until submit
+    switch (type) {
+      case "name":
+        return !isValidName(value) ? "Letters and spaces only, min 2 chars" : null;
+      case "email":
+        return !isValidEmail(value) ? "Enter a valid email address" : null;
+      case "phone":
+        return !isValidPhone(value) ? "Must be exactly 10 digits" : null;
+      case "college":
+        return value.trim().length < 2 ? "Min 2 characters" : null;
+    }
+  };
 
   /* ─── Member form block ─── */
   const renderMemberFields = (
@@ -244,8 +270,11 @@ export default function RegistrationForm() {
             value={member.name}
             onChange={(e) => updateMember(memberKey, "name", e.target.value)}
             placeholder="John Doe"
-            className={inputCls}
+            className={getErr(member.name, "name") ? inputErrCls : inputCls}
           />
+          {getErr(member.name, "name") && (
+            <p className={errMsg}>{getErr(member.name, "name")}</p>
+          )}
         </div>
         <div>
           <label className="block text-xs font-medium text-foreground/50 mb-1.5">
@@ -256,8 +285,11 @@ export default function RegistrationForm() {
             value={member.email}
             onChange={(e) => updateMember(memberKey, "email", e.target.value)}
             placeholder="john@example.com"
-            className={inputCls}
+            className={getErr(member.email, "email") ? inputErrCls : inputCls}
           />
+          {getErr(member.email, "email") && (
+            <p className={errMsg}>{getErr(member.email, "email")}</p>
+          )}
         </div>
         <div>
           <label className="block text-xs font-medium text-foreground/50 mb-1.5">
@@ -266,10 +298,18 @@ export default function RegistrationForm() {
           <input
             type="tel"
             value={member.phone}
-            onChange={(e) => updateMember(memberKey, "phone", e.target.value)}
+            onChange={(e) => {
+              // Only allow digits
+              const val = e.target.value.replace(/\D/g, "").slice(0, 10);
+              updateMember(memberKey, "phone", val);
+            }}
             placeholder="9876543210"
-            className={inputCls}
+            maxLength={10}
+            className={getErr(member.phone, "phone") ? inputErrCls : inputCls}
           />
+          {getErr(member.phone, "phone") && (
+            <p className={errMsg}>{getErr(member.phone, "phone")}</p>
+          )}
         </div>
         <div>
           <label className="block text-xs font-medium text-foreground/50 mb-1.5">
@@ -303,8 +343,11 @@ export default function RegistrationForm() {
               updateMember(memberKey, "collegeName", e.target.value)
             }
             placeholder="KLE Technological University"
-            className={inputCls}
+            className={getErr(member.collegeName, "college") ? inputErrCls : inputCls}
           />
+          {getErr(member.collegeName, "college") && (
+            <p className={errMsg}>{getErr(member.collegeName, "college")}</p>
+          )}
         </div>
       </div>
     </div>
