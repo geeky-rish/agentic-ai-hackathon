@@ -246,11 +246,10 @@ export default function RegistrationForm() {
     isLead: boolean
   ) => (
     <div
-      className={`relative p-5 rounded-2xl border transition-all ${
-        isLead
-          ? "bg-accent/[0.04] border-accent/20"
-          : "bg-white/[0.02] border-white/5"
-      }`}
+      className={`relative p-5 rounded-2xl border transition-all ${isLead
+        ? "bg-accent/[0.04] border-accent/20"
+        : "bg-white/[0.02] border-white/5"
+        }`}
     >
       <div className="flex items-center gap-3 mb-4">
         <span className="text-sm font-bold text-foreground/60">{label}</span>
@@ -269,7 +268,7 @@ export default function RegistrationForm() {
             type="text"
             value={member.name}
             onChange={(e) => updateMember(memberKey, "name", e.target.value)}
-            placeholder="John Doe"
+            placeholder="Enter your name"
             className={getErr(member.name, "name") ? inputErrCls : inputCls}
           />
           {getErr(member.name, "name") && (
@@ -284,7 +283,7 @@ export default function RegistrationForm() {
             type="email"
             value={member.email}
             onChange={(e) => updateMember(memberKey, "email", e.target.value)}
-            placeholder="john@example.com"
+            placeholder="abc@example.com"
             className={getErr(member.email, "email") ? inputErrCls : inputCls}
           />
           {getErr(member.email, "email") && (
@@ -303,7 +302,7 @@ export default function RegistrationForm() {
               const val = e.target.value.replace(/\D/g, "").slice(0, 10);
               updateMember(memberKey, "phone", val);
             }}
-            placeholder="9876543210"
+            placeholder="Enter you contact no."
             maxLength={10}
             className={getErr(member.phone, "phone") ? inputErrCls : inputCls}
           />
@@ -342,7 +341,7 @@ export default function RegistrationForm() {
             onChange={(e) =>
               updateMember(memberKey, "collegeName", e.target.value)
             }
-            placeholder="KLE Technological University"
+            placeholder="Enter Your College/University"
             className={getErr(member.collegeName, "college") ? inputErrCls : inputCls}
           />
           {getErr(member.collegeName, "college") && (
@@ -429,22 +428,20 @@ export default function RegistrationForm() {
             <div key={s.num} className="flex items-center gap-2">
               <button
                 onClick={() => setStep(s.num)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  step === s.num
-                    ? "bg-accent/15 text-accent border border-accent/20"
-                    : step > s.num
-                      ? "bg-green-500/10 text-green-400 border border-green-500/20"
-                      : "glass text-foreground/40 border border-white/5"
-                }`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${step === s.num
+                  ? "bg-accent/15 text-accent border border-accent/20"
+                  : step > s.num
+                    ? "bg-green-500/10 text-green-400 border border-green-500/20"
+                    : "glass text-foreground/40 border border-white/5"
+                  }`}
               >
                 <span
-                  className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                    step > s.num
-                      ? "bg-green-500/20 text-green-400"
-                      : step === s.num
-                        ? "bg-accent/20 text-accent"
-                        : "bg-white/5 text-foreground/40"
-                  }`}
+                  className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${step > s.num
+                    ? "bg-green-500/20 text-green-400"
+                    : step === s.num
+                      ? "bg-accent/20 text-accent"
+                      : "bg-white/5 text-foreground/40"
+                    }`}
                 >
                   {step > s.num ? "✓" : s.num}
                 </span>
@@ -452,9 +449,8 @@ export default function RegistrationForm() {
               </button>
               {i < 2 && (
                 <div
-                  className={`w-8 h-px ${
-                    step > s.num ? "bg-green-500/30" : "bg-white/10"
-                  }`}
+                  className={`w-8 h-px ${step > s.num ? "bg-green-500/30" : "bg-white/10"
+                    }`}
                 />
               )}
             </div>
@@ -511,11 +507,10 @@ export default function RegistrationForm() {
                         <button
                           key={n}
                           onClick={() => updateField("numMembers", n)}
-                          className={`flex-1 py-3 rounded-xl text-sm font-semibold transition-all ${
-                            form.numMembers === n
-                              ? "bg-accent/15 text-accent border border-accent/25"
-                              : "bg-white/[0.03] text-foreground/50 border border-white/10 hover:border-white/20"
-                          }`}
+                          className={`flex-1 py-3 rounded-xl text-sm font-semibold transition-all ${form.numMembers === n
+                            ? "bg-accent/15 text-accent border border-accent/25"
+                            : "bg-white/[0.03] text-foreground/50 border border-white/10 hover:border-white/20"
+                            }`}
                         >
                           {n} Members
                         </button>
@@ -670,13 +665,12 @@ export default function RegistrationForm() {
                                     isSelected ? "" : theme
                                   )
                                 }
-                                className={`px-3 py-2.5 rounded-xl text-xs font-medium transition-all border ${
-                                  isSelected
-                                    ? "bg-accent/15 border-accent/25 text-accent"
-                                    : isUsedElsewhere
-                                      ? "bg-white/[0.01] border-white/5 text-foreground/20 cursor-not-allowed"
-                                      : "bg-white/[0.03] border-white/8 text-foreground/60 hover:border-accent/15 hover:text-foreground/80"
-                                }`}
+                                className={`px-3 py-2.5 rounded-xl text-xs font-medium transition-all border ${isSelected
+                                  ? "bg-accent/15 border-accent/25 text-accent"
+                                  : isUsedElsewhere
+                                    ? "bg-white/[0.01] border-white/5 text-foreground/20 cursor-not-allowed"
+                                    : "bg-white/[0.03] border-white/8 text-foreground/60 hover:border-accent/15 hover:text-foreground/80"
+                                  }`}
                               >
                                 {theme}
                               </button>
@@ -730,11 +724,10 @@ export default function RegistrationForm() {
                       <button
                         key={val}
                         onClick={() => updateField("accommodation", val)}
-                        className={`flex-1 py-3 rounded-xl text-sm font-semibold transition-all ${
-                          form.accommodation === val
-                            ? "bg-accent/15 text-accent border border-accent/25"
-                            : "bg-white/[0.03] text-foreground/50 border border-white/10 hover:border-white/20"
-                        }`}
+                        className={`flex-1 py-3 rounded-xl text-sm font-semibold transition-all ${form.accommodation === val
+                          ? "bg-accent/15 text-accent border border-accent/25"
+                          : "bg-white/[0.03] text-foreground/50 border border-white/10 hover:border-white/20"
+                          }`}
                       >
                         {val === "YES" ? "Yes, I need accommodation" : "No, not needed"}
                       </button>
