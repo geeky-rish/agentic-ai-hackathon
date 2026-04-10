@@ -1,4 +1,5 @@
 import Image from "next/image";
+import kleLogo from "../../public/kle-logo.png";
 
 export default function Footer() {
   return (
@@ -9,10 +10,8 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <Image
-                src="/kle-logo.png"
+                src={kleLogo}
                 alt="KLE Technological University"
-                width={180}
-                height={45}
                 className="object-contain brightness-110"
                 style={{ height: "2.5rem", width: "auto" }}
               />

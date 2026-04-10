@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import kleLogo from "../../public/kle-logo.png";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -39,10 +40,8 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
           <Image
-            src="/kle-logo.png"
+            src={kleLogo}
             alt="KLE Technological University"
-            width={160}
-            height={40}
             className="object-contain brightness-110"
             style={{ height: "2rem", width: "auto" }}
             priority
