@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -36,12 +37,15 @@ export default function Navbar() {
       <div className="section-container flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent-muted to-accent-secondary flex items-center justify-center text-xs font-bold text-white">
-            KLE
-          </div>
-          <span className="text-sm md:text-base font-semibold text-foreground group-hover:text-accent transition-colors">
-            KLE Tech
-          </span>
+          <Image
+            src="/KLE Logo transparency with shadow.png"
+            alt="KLE Technological University"
+            width={160}
+            height={40}
+            className="object-contain brightness-110"
+            style={{ height: "2rem", width: "auto" }}
+            priority
+          />
         </a>
 
         {/* Desktop Links */}

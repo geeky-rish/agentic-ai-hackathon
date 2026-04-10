@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="relative border-t border-white/5 bg-black/30">
@@ -6,17 +8,17 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-neon-cyan to-neon-purple flex items-center justify-center text-xs font-bold text-background">
-                KLE
-              </div>
-              <div>
-                <div className="text-sm font-bold text-foreground">
-                  KLE Technological University
-                </div>
-                <div className="text-xs text-foreground/40">
-                  Hubballi, Karnataka, India
-                </div>
-              </div>
+              <Image
+                src="/KLE Logo transparency with shadow.png"
+                alt="KLE Technological University"
+                width={180}
+                height={45}
+                className="object-contain brightness-110"
+                style={{ height: "2.5rem", width: "auto" }}
+              />
+            </div>
+            <div className="text-xs text-foreground/40">
+              Hubballi, Karnataka, India
             </div>
             <p className="text-sm text-foreground/40 leading-relaxed max-w-xs">
               Empowering the next generation of AI innovators through hands-on

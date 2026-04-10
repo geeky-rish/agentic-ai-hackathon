@@ -113,8 +113,8 @@ export default function HackathonSection() {
         {/* Prize Cards — Podium Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto items-end">
           {prizes.map((prize, i) => {
-            // Podium order: 2nd (left) → 1st (center) → 3rd (right)
-            const podiumOrder = i === 0 ? 'md:order-2' : i === 1 ? 'md:order-1' : 'md:order-3';
+            // Sequential order: 1st → 2nd → 3rd
+            const podiumOrder = i === 0 ? 'md:order-1' : i === 1 ? 'md:order-2' : 'md:order-3';
 
             return (
               <motion.div

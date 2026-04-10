@@ -5,18 +5,6 @@ import { useRef } from "react";
 
 const teamCategories = [
   {
-    title: "Patrons",
-    members: [
-      { name: "Dr. Ashok Shettar", role: "Pro Chancellor" },
-      { name: "Dr. Narayan D G", role: "Head, Computer Science and Engineering (AI)" },
-    ],
-  },
-  {
-    title: "Faculty Coordinators",
-    members: [
-      { name: "Amit Kachavimath", role: "Assistant Professor, CSE(AI)" }],
-  },
-  {
     title: "Student Organizers",
     members: [
       { name: "Rishi Kulkarni", role: "Coordinator" },

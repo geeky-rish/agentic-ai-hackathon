@@ -90,12 +90,6 @@ export default function HeroSection() {
           <button className="btn-primary text-base px-8 py-4 rounded-xl">
             <span>Register Now →</span>
           </button>
-          <a
-            href="#about"
-            className="px-8 py-4 text-base font-semibold rounded-xl border border-white/8 text-foreground/70 hover:border-accent/20 hover:text-accent hover:bg-accent/5 transition-all"
-          >
-            Learn More
-          </a>
         </motion.div>
 
         {/* Stats */}

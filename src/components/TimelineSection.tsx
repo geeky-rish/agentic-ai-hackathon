@@ -13,7 +13,7 @@ const timelineData = [
       { time: "11:30 – 13:30", title: "Multi-Agent Systems", desc: "Collaboration & communication" },
       { time: "14:30 – 16:30", title: "Agent Architecture Patterns", desc: "Design patterns & best practices" },
       { time: "17:00 – 19:00", title: "LangChain & LangGraph", desc: "Hands-on framework workshop" },
-      { time: "19:30", title: "Problem Statements Released", desc: "Hackathon kickoff briefing", highlight: true },
+      { time: "19:30", title: "Hackathon kickoff briefing", desc: "", highlight: true },
     ],
   },
   {
@@ -101,16 +101,14 @@ export default function TimelineSection() {
 
                     {/* Card - mobile always right, desktop alternates */}
                     <div
-                      className={`ml-14 md:ml-0 md:w-[calc(50%-32px)] ${
-                        isLeft ? "md:mr-auto md:pr-0" : "md:ml-auto md:pl-0"
-                      }`}
+                      className={`ml-14 md:ml-0 md:w-[calc(50%-32px)] ${isLeft ? "md:mr-auto md:pr-0" : "md:ml-auto md:pl-0"
+                        }`}
                     >
                       <div
-                        className={`glass-card p-5 ${
-                          event.highlight
-                            ? "border-accent/15 shadow-lg shadow-accent/5"
-                            : ""
-                        }`}
+                        className={`glass-card p-5 ${event.highlight
+                          ? "border-accent/15 shadow-lg shadow-accent/5"
+                          : ""
+                          }`}
                       >
                         <span className="text-xs font-mono text-accent/70">
                           {event.time}
