@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -38,7 +39,7 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
           <Image
-            src="/KLE Logo transparency with shadow.png"
+            src="/kle-logo.png"
             alt="KLE Technological University"
             width={160}
             height={40}
@@ -59,12 +60,12 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#hero"
+          <Link
+            href="/register"
             className="ml-4 px-5 py-2 text-sm font-semibold rounded-lg bg-gradient-to-r from-accent-muted to-accent text-white hover:shadow-lg hover:shadow-accent/15 transition-all"
           >
             Register
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Hamburger */}
@@ -109,13 +110,13 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="#hero"
+              <Link
+                href="/register"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 px-5 py-3 text-sm font-semibold rounded-lg bg-gradient-to-r from-accent-muted to-accent text-white text-center"
               >
                 Register Now
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

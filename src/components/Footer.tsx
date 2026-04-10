@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <Image
-                src="/KLE Logo transparency with shadow.png"
+                src="/kle-logo.png"
                 alt="KLE Technological University"
                 width={180}
                 height={45}

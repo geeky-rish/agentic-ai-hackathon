@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import ParticleBackground from "./ParticleBackground";
 
 export default function HeroSection() {
@@ -87,9 +88,9 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 1.0 }}
           className="flex flex-col sm:flex-row gap-4 mt-4"
         >
-          <button className="btn-primary text-base px-8 py-4 rounded-xl">
+          <Link href="/register" className="btn-primary text-base px-8 py-4 rounded-xl">
             <span>Register Now →</span>
-          </button>
+          </Link>
         </motion.div>
 
         {/* Stats */}
