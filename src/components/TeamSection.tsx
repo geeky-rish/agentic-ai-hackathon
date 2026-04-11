@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
 
 const teamCategories = [
@@ -14,7 +14,7 @@ const teamCategories = [
   },
 ];
 
-const stagger = {
+const stagger: Variants = {
   hidden: { opacity: 0, y: 50, scale: 0.95 },
   visible: (i: number) => ({
     opacity: 1, y: 0, scale: 1,

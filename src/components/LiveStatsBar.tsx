@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
 const stats = [
@@ -26,7 +26,7 @@ function AnimatedCounter({ target, prefix = "", suffix = "", isInView }: { targe
   return <span className="font-black text-3xl md:text-5xl gradient-text-vibrant tabular-nums">{prefix}{count}{suffix}</span>;
 }
 
-const stagger = {
+const stagger: Variants = {
   hidden: { opacity: 0, y: 50, scale: 0.95 },
   visible: (i: number) => ({
     opacity: 1, y: 0, scale: 1,
