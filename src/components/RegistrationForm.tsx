@@ -148,56 +148,59 @@ export default function RegistrationForm() {
     setSubmitting(true);
 
     try {
-      const fd = new window.FormData();
+      const params = new URLSearchParams();
 
       // Team info
-      fd.append(ENTRY.teamName, form.teamName.trim());
-      fd.append(ENTRY.numMembers, form.numMembers);
+      params.append(ENTRY.teamName, form.teamName.trim());
+      params.append(ENTRY.numMembers, form.numMembers);
 
       // Member 1
-      fd.append(ENTRY.m1Name, form.member1.name.trim());
-      fd.append(ENTRY.m1Email, form.member1.email.trim());
-      fd.append(ENTRY.m1Phone, form.member1.phone.trim());
-      fd.append(ENTRY.m1Year, form.member1.yearOfStudy);
-      fd.append(ENTRY.m1College, form.member1.collegeName.trim());
+      params.append(ENTRY.m1Name, form.member1.name.trim());
+      params.append(ENTRY.m1Email, form.member1.email.trim());
+      params.append(ENTRY.m1Phone, form.member1.phone.trim());
+      params.append(ENTRY.m1Year, form.member1.yearOfStudy);
+      params.append(ENTRY.m1College, form.member1.collegeName.trim());
 
       // Member 2
-      fd.append(ENTRY.m2Name, form.member2.name.trim());
-      fd.append(ENTRY.m2Email, form.member2.email.trim());
-      fd.append(ENTRY.m2Phone, form.member2.phone.trim());
-      fd.append(ENTRY.m2Year, form.member2.yearOfStudy);
-      fd.append(ENTRY.m2College, form.member2.collegeName.trim());
+      params.append(ENTRY.m2Name, form.member2.name.trim());
+      params.append(ENTRY.m2Email, form.member2.email.trim());
+      params.append(ENTRY.m2Phone, form.member2.phone.trim());
+      params.append(ENTRY.m2Year, form.member2.yearOfStudy);
+      params.append(ENTRY.m2College, form.member2.collegeName.trim());
 
       // Member 3 — only if 3 or 4 members
-      if ((form.numMembers === "3" || form.numMembers === "4") && form.member3.name.trim()) {
-        fd.append(ENTRY.m3Name, form.member3.name.trim());
-        fd.append(ENTRY.m3Email, form.member3.email.trim());
-        fd.append(ENTRY.m3Phone, form.member3.phone.trim());
-        fd.append(ENTRY.m3Year, form.member3.yearOfStudy);
-        fd.append(ENTRY.m3College, form.member3.collegeName.trim());
+      if (form.numMembers === "3" || form.numMembers === "4") {
+        params.append(ENTRY.m3Name, form.member3.name.trim());
+        params.append(ENTRY.m3Email, form.member3.email.trim());
+        params.append(ENTRY.m3Phone, form.member3.phone.trim());
+        params.append(ENTRY.m3Year, form.member3.yearOfStudy);
+        params.append(ENTRY.m3College, form.member3.collegeName.trim());
       }
 
       // Member 4 — only if 4 members
-      if (form.numMembers === "4" && form.member4.name.trim()) {
-        fd.append(ENTRY.m4Name, form.member4.name.trim());
-        fd.append(ENTRY.m4Email, form.member4.email.trim());
-        fd.append(ENTRY.m4Phone, form.member4.phone.trim());
-        fd.append(ENTRY.m4Year, form.member4.yearOfStudy);
-        fd.append(ENTRY.m4College, form.member4.collegeName.trim());
+      if (form.numMembers === "4") {
+        params.append(ENTRY.m4Name, form.member4.name.trim());
+        params.append(ENTRY.m4Email, form.member4.email.trim());
+        params.append(ENTRY.m4Phone, form.member4.phone.trim());
+        params.append(ENTRY.m4Year, form.member4.yearOfStudy);
+        params.append(ENTRY.m4College, form.member4.collegeName.trim());
       }
 
       // Themes
-      fd.append(ENTRY.theme1, form.themePriority[0]);
-      fd.append(ENTRY.theme2, form.themePriority[1]);
-      fd.append(ENTRY.theme3, form.themePriority[2]);
+      params.append(ENTRY.theme1, form.themePriority[0]);
+      params.append(ENTRY.theme2, form.themePriority[1]);
+      params.append(ENTRY.theme3, form.themePriority[2]);
 
       // Accommodation
-      fd.append(ENTRY.accommodation, form.accommodation);
+      params.append(ENTRY.accommodation, form.accommodation);
 
       await fetch(GOOGLE_FORM_URL, {
         method: "POST",
         mode: "no-cors",
-        body: fd,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: params.toString(),
       });
 
       setSubmitted(true);
