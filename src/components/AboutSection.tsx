@@ -1,90 +1,129 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const highlights = [
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
-      </svg>
-    ),
-    title: "Autonomous Agents",
-    description:
-      "Explore self-governing AI agents that perceive, decide, and act independently — solving complex tasks without constant human oversight.",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-      </svg>
-    ),
-    title: "Multi-Agent Systems",
-    description:
-      "Learn how multiple AI agents collaborate, negotiate, and orchestrate to tackle tasks that no single agent can handle alone.",
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-      </svg>
-    ),
-    title: "Real-World AI Applications",
-    description:
-      "Build practical solutions across healthcare, finance, logistics, and more — where agentic AI is already transforming industries.",
-  },
+  { number: "01", title: "Autonomous Agents", description: "Self-governing AI that perceives, decides, and acts independently — beyond simple chatbots.", color: "text-red-400" },
+  { number: "02", title: "Multi-Agent Systems", description: "Multiple AI agents collaborating, negotiating, and orchestrating complex real-world tasks.", color: "text-purple-400" },
+  { number: "03", title: "Real-World Impact", description: "Solutions across healthcare, finance, logistics — where agentic AI is transforming industries.", color: "text-indigo-400" },
 ];
+
+const steps = [
+  { number: "01", title: "Register & Choose Theme", description: "Form your team, pick a theme, sign up." },
+  { number: "02", title: "Get Shortlisted", description: "Our team reviews and selects the top teams." },
+  { number: "03", title: "Attend & Compete", description: "Two days of sessions and hackathon. Build, present, win." },
+];
+
+const stagger = {
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  visible: (i: number) => ({
+    opacity: 1, y: 0, scale: 1,
+    transition: { duration: 0.5, delay: 0.15 + i * 0.12, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
 
 export default function AboutSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="about" className="relative py-32 overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-accent-secondary/3 blur-[150px]" />
+    <section id="about" className="relative py-28 md:py-36 bg-vibrant-1 overflow-hidden">
+      <div className="grid-bg" />
+      {/* Glow */}
+      <div className="absolute top-0 left-1/3 w-[500px] h-[300px] bg-purple-500/5 blur-[150px] rounded-full" />
 
-      <div ref={ref} className="section-container relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center max-w-3xl mx-auto mb-20"
-        >
-          <div className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs font-medium text-accent mb-6 tracking-widest uppercase">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse-glow" />
-            About the Event
-          </div>
-          <h2 className="section-title gradient-text mb-6">
-            What is Agentic AI?
-          </h2>
-          <p className="text-lg text-foreground/60 leading-relaxed">
-            Agentic AI represents a paradigm shift — AI systems that don&apos;t just respond to prompts, but autonomously 
-            plan, reason, and execute multi-step tasks. This hackathon brings together innovators to explore the 
-            cutting edge of autonomous intelligence, from single-agent architectures to complex multi-agent orchestration.
-          </p>
+      <div ref={ref} className="container-main relative z-10">
+        {/* Split layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
+          {/* Left */}
+          <motion.div initial={{ opacity: 0, x: -40, filter: "blur(8px)" }}
+            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5">
+            <span className="label-tag mb-8 inline-flex">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse-dot" />
+              About the Event
+            </span>
+            <h2 className="section-heading text-foreground mb-4">
+              What is<br/><span className="gradient-text-vibrant">Agentic AI</span>?
+            </h2>
+            <div className="accent-line mb-8" />
+            <p className="text-muted text-sm md:text-base leading-relaxed mb-8 max-w-md">
+              Agentic AI represents a paradigm shift — AI systems that don&apos;t just respond to
+              prompts, but autonomously plan, reason, and execute multi-step tasks.
+            </p>
+            <div className="card-vibrant p-5">
+              <p className="text-sm text-muted leading-relaxed">
+                <span className="text-accent font-bold text-base">Beyond chatbots</span>{" "}
+                → Real autonomous systems that perceive, decide, and act in the real world.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Right — animated AI visual */}
+          <motion.div initial={{ opacity: 0, x: 40, filter: "blur(8px)" }}
+            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7 flex items-center justify-center">
+            <div className="relative w-64 h-64 md:w-80 md:h-80">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-28 h-28 md:w-36 md:h-36 rounded-full bg-gradient-to-br from-red-500/15 via-purple-500/10 to-indigo-500/15 border border-red-500/15 flex items-center justify-center animate-glow-pulse">
+                  <svg className="w-14 h-14 md:w-18 md:h-18 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+                  </svg>
+                </div>
+              </div>
+              {[
+                { label: "Perceive", delay: "0s", color: "bg-red-500/20 border-red-500/20 text-red-300" },
+                { label: "Decide", delay: "-2.5s", color: "bg-purple-500/20 border-purple-500/20 text-purple-300" },
+                { label: "Act", delay: "-5s", color: "bg-indigo-500/20 border-indigo-500/20 text-indigo-300" },
+              ].map((node, i) => (
+                <div key={node.label} className="absolute inset-0"
+                  style={{ animation: `orbit ${7 + i}s linear infinite`, animationDelay: node.delay }}>
+                  <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border ${node.color} backdrop-blur-sm`}>
+                    {node.label}
+                  </div>
+                </div>
+              ))}
+              <div className="absolute inset-4 rounded-full border border-red-500/6 animate-glow-pulse" />
+              <div className="absolute inset-10 rounded-full border border-purple-500/5" />
+              <div className="absolute -inset-4 rounded-full border border-indigo-500/4" />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Feature cards — staggered */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-24">
+          {highlights.map((item, i) => (
+            <motion.div key={item.number} custom={i} initial="hidden"
+              animate={isInView ? "visible" : "hidden"} variants={stagger}
+              whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+              className="card-vibrant p-7 group cursor-default">
+              <span className="text-4xl font-black text-white/[0.04] group-hover:text-accent/10 transition-colors duration-300 block mb-3 select-none">{item.number}</span>
+              <h3 className={`text-lg font-bold text-foreground mb-2 group-hover:${item.color} transition-colors duration-300`}>{item.title}</h3>
+              <p className="text-sm text-muted leading-relaxed">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Steps */}
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }} className="flex items-center gap-4 mb-10">
+          <div className="accent-line" />
+          <h3 className="text-xl md:text-2xl font-bold text-foreground">How to <span className="text-accent">Participate</span></h3>
         </motion.div>
 
-        {/* Highlight Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {highlights.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
-              className="glass-card p-8 flex flex-col gap-4"
-            >
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent/10 to-accent-secondary/10 flex items-center justify-center text-accent">
-                {item.icon}
-              </div>
-              <h3 className="text-xl font-bold text-foreground">{item.title}</h3>
-              <p className="text-foreground/50 leading-relaxed text-sm">
-                {item.description}
-              </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {steps.map((step, i) => (
+            <motion.div key={step.number} custom={i} initial="hidden"
+              animate={isInView ? "visible" : "hidden"} variants={stagger}
+              whileHover={{ y: -8, transition: { duration: 0.25 } }}
+              className="card-vibrant p-6 group relative">
+              <div className="text-5xl font-black text-white/[0.03] group-hover:text-accent/10 transition-colors duration-300 mb-3 select-none">{step.number}</div>
+              <h4 className="text-base font-bold text-foreground mb-2 group-hover:text-accent transition-colors duration-300">{step.title}</h4>
+              <p className="text-sm text-muted leading-relaxed">{step.description}</p>
+              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
             </motion.div>
           ))}
         </div>

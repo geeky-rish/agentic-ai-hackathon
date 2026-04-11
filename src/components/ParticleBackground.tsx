@@ -35,12 +35,22 @@ export default function ParticleBackground() {
       constructor(w: number, h: number) {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
-        this.vx = (Math.random() - 0.5) * 0.3;
-        this.vy = (Math.random() - 0.5) * 0.3;
-        this.size = Math.random() * 1.5 + 0.3;
-        this.opacity = Math.random() * 0.3 + 0.05;
-        this.color = Math.random() > 0.5 ? "124, 138, 255" : "167, 139, 250";
-        this.pulseSpeed = Math.random() * 0.02 + 0.01;
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.vy = (Math.random() - 0.5) * 0.25;
+        this.size = Math.random() * 1.8 + 0.3;
+        this.opacity = Math.random() * 0.35 + 0.05;
+
+        // Extended color palette: indigo, purple, cyan
+        const colorRand = Math.random();
+        if (colorRand < 0.4) {
+          this.color = "124, 138, 255"; // indigo
+        } else if (colorRand < 0.7) {
+          this.color = "167, 139, 250"; // purple
+        } else {
+          this.color = "103, 232, 249"; // cyan
+        }
+
+        this.pulseSpeed = Math.random() * 0.02 + 0.008;
         this.pulsePhase = Math.random() * Math.PI * 2;
       }
 
@@ -53,7 +63,7 @@ export default function ParticleBackground() {
         if (this.y < 0) this.y = h;
         if (this.y > h) this.y = 0;
 
-        this.opacity = 0.05 + Math.sin(time * this.pulseSpeed + this.pulsePhase) * 0.1 + 0.1;
+        this.opacity = 0.05 + Math.sin(time * this.pulseSpeed + this.pulsePhase) * 0.12 + 0.12;
       }
 
       draw(ctx: CanvasRenderingContext2D) {
@@ -68,7 +78,7 @@ export default function ParticleBackground() {
       resize();
       const w = canvas.offsetWidth;
       const h = canvas.offsetHeight;
-      const count = Math.min(Math.floor((w * h) / 8000), 120);
+      const count = Math.min(Math.floor((w * h) / 7000), 140);
       particles = Array.from({ length: count }, () => new Particle(w, h));
     };
 
@@ -91,11 +101,13 @@ export default function ParticleBackground() {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
+          if (dist < 130) {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(124, 138, 255, ${0.03 * (1 - dist / 120)})`;
+            const alpha = 0.04 * (1 - dist / 130);
+            // Use the color of the first particle for the line
+            ctx.strokeStyle = `rgba(${particles[i].color}, ${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -119,7 +131,7 @@ export default function ParticleBackground() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.5 }}
+      style={{ opacity: 0.6 }}
     />
   );
 }

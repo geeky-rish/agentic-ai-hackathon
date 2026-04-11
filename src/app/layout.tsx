@@ -11,10 +11,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Agentic AI Hackathon 2026 | KLE Technological University",
+  title: "IGNITRIX — Agentic AI Hackathon 2026 | KLE Technological University",
   description:
-    "Build the future with autonomous AI systems. Join us for two days of     Engaging Sessions and an exciting hackathon at KLE Tech — April 25–26, 2026.",
+    "Build the future with autonomous AI systems. Join IGNITRIX for two days of amazing sessions and an exciting hackathon at KLE Tech — April 25–26, 2026.",
   keywords: [
+    "IGNITRIX",
     "Agentic AI",
     "Hackathon",
     "KLE Tech",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     "LangGraph",
   ],
   openGraph: {
-    title: "Agentic AI Hackathon 2026",
+    title: "IGNITRIX — Agentic AI Hackathon 2026",
     description:
       "Two days of learning, building, and competing with autonomous AI systems.",
     type: "website",
@@ -38,7 +39,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="min-h-screen bg-background text-foreground font-sans" suppressHydrationWarning>
+      <body className="min-h-screen" suppressHydrationWarning>
+        <div className="noise-overlay" aria-hidden="true" />
         <Navbar />
         <main>{children}</main>
         <Footer />

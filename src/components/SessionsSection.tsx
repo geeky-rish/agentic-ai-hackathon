@@ -3,135 +3,162 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const sessions = [
+const workshops = [
   {
     number: "01",
-    title: "Introduction to Agentic AI",
-    description:
-      "Dive into the foundational concepts behind agentic AI — understand what makes an AI system truly autonomous, how agents perceive and act upon their environment, and the key differences from traditional AI approaches.",
-    duration: "2 Hours",
-    color: "from-accent to-accent-muted",
+    title: "Agentic AI Overview",
+    items: [
+      "Agents, architecture, workflows, lifecycle",
+      "Real-world use cases + demo",
+    ],
   },
   {
     number: "02",
-    title: "Multi-Agent Systems",
-    description:
-      "Explore how multiple AI agents communicate, coordinate, and collaborate. Learn about agent communication protocols, role assignment, conflict resolution, and emergent collective intelligence.",
-    duration: "2 Hours",
-    color: "from-accent-muted to-accent-secondary",
+    title: "RAG, LangChain & MCP",
+    items: [
+      "RAG basics, pipelines, frameworks",
+      "MCP systems + demo",
+    ],
   },
   {
     number: "03",
-    title: "Agent Architecture Patterns",
-    description:
-      "Master the design patterns behind robust agentic systems — from ReAct and Plan-and-Execute to tool-use architectures. Understand when and how to apply each pattern for maximum effectiveness.",
-    duration: "2 Hours",
-    color: "from-accent-secondary to-neon-pink",
+    title: "Multi-Agent Systems (MAS)",
+    items: [
+      "LangGraph & AutoGen",
+      "Distributed agent systems",
+    ],
   },
   {
     number: "04",
-    title: "LangChain & LangGraph",
-    description:
-      "Get hands-on with the industry's leading agentic frameworks. Build your first agent pipeline using LangChain and orchestrate complex multi-step workflows with LangGraph's stateful graph architecture.",
-    duration: "2 Hours",
-    color: "from-neon-pink to-accent",
+    title: "Learning Agents (RL)",
+    items: [
+      "RL intuition",
+      "Adaptive intelligent agents",
+    ],
   },
 ];
 
+const stagger = {
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
 export default function SessionsSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="sessions" className="relative py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute top-1/2 -translate-y-1/2 right-0 w-[600px] h-[600px] rounded-full bg-accent/3 blur-[200px]" />
-      <div className="absolute top-1/3 left-0 w-[400px] h-[400px] rounded-full bg-accent-secondary/3 blur-[150px]" />
+    <section id="sessions" className="relative py-28 md:py-36 bg-vibrant-2 overflow-hidden">
+      {/* Background decorations */}
+      <div className="grid-bg" />
+      <div className="absolute top-1/2 -translate-y-1/2 right-0 w-[600px] h-[600px] rounded-full bg-red-500/4 blur-[180px]" />
+      <div className="absolute top-1/3 left-0 w-[400px] h-[400px] rounded-full bg-indigo-500/3 blur-[150px]" />
 
-      <div ref={ref} className="section-container relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center max-w-3xl mx-auto mb-20"
-        >
-          <div className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full text-xs font-medium text-accent-secondary mb-6 tracking-widest uppercase">
-            <span className="w-2 h-2 rounded-full bg-accent-secondary animate-pulse-glow" />
-            Day 1 — April 25, 2026
-          </div>
-          <h2 className="section-title mb-6">
-            <span className="text-foreground"></span>
-            <span className="gradient-text">Sessions</span>
-          </h2>
-          <p className="text-lg text-foreground/60 leading-relaxed">
-            Four intensive sessions designed to take you from fundamentals to building
-            production-ready agentic systems. Each session is hands-on and project-oriented.
-          </p>
-        </motion.div>
-
-        {/* Session Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {sessions.map((session, i) => (
-            <motion.div
-              key={session.number}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 * i }}
-              className="glass-card p-8 group relative overflow-hidden"
-            >
-              {/* Session number watermark */}
-              <span className="absolute -top-4 -right-2 text-[120px] font-black text-white/[0.02] leading-none select-none pointer-events-none group-hover:text-white/[0.04] transition-colors">
-                {session.number}
-              </span>
-
-              <div className="relative z-10 flex flex-col gap-4">
-                {/* Top row */}
-                <div className="flex items-center justify-between">
-                  <span className={`text-xs font-bold tracking-widest uppercase bg-gradient-to-r ${session.color} bg-clip-text text-transparent`}>
-                    Session {session.number}
-                  </span>
-                  <span className="text-xs font-medium text-foreground/40 glass px-3 py-1 rounded-full">
-                    ⏱ {session.duration}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors">
-                  {session.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm text-foreground/50 leading-relaxed">
-                  {session.description}
-                </p>
-
-                {/* Bottom accent line */}
-                <div className="mt-2 h-0.5 w-full rounded-full overflow-hidden bg-white/5">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={isInView ? { width: "100%" } : {}}
-                    transition={{ duration: 1.2, delay: 0.5 + i * 0.15 }}
-                    className={`h-full bg-gradient-to-r ${session.color}`}
-                  />
-                </div>
-              </div>
-            </motion.div>
-          ))}
+      <div ref={ref} className="container-main relative z-10">
+        {/* Header Section */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
+            animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="md:col-span-6"
+          >
+            <span className="label-tag mb-6 inline-flex">
+              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse-dot" />
+              Pre-Hackathon Journey
+            </span>
+            <h2 className="section-heading text-foreground tracking-tight">
+              Day 1:<br />
+              <span className="gradient-text-vibrant">Workshop Experience</span>
+            </h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="md:col-span-6 flex items-end"
+          >
+            <p className="text-muted text-sm md:text-lg leading-relaxed max-w-lg mb-2">
+              A guided learning journey taking you from foundational concepts to advanced intelligent systems. By the end of these sessions, you will be well-equipped to build highly capable agents for the hackathon.
+            </p>
+          </motion.div>
         </div>
 
-        {/* Total hours badge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="mt-10 text-center"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mb-16 mt-4"
         >
-          <span className="glass px-6 py-3 rounded-full text-sm font-medium text-foreground/60 inline-flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500/60 animate-pulse" />
-            Total: 8 Hours of Intensive Learning
-          </span>
+          <div className="accent-line" />
         </motion.div>
+
+        {/* Timeline Layout */}
+        <div className="relative mt-8 md:mt-20">
+          {/* Desktop connecting line */}
+          <div className="hidden lg:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-white/10" />
+          <motion.div
+            className="hidden lg:block absolute top-6 left-[12.5%] right-[12.5%] h-[2px] bg-gradient-to-r from-accent via-purple-500 to-indigo-500 origin-left"
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : {}}
+            transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
+          />
+
+          {/* Mobile connecting line */}
+          <div className="lg:hidden absolute top-6 bottom-6 left-6 w-px bg-white/10" />
+          <motion.div
+            className="lg:hidden absolute top-6 bottom-6 left-6 w-[2px] bg-gradient-to-b from-accent via-purple-500 to-indigo-500 origin-top"
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : {}}
+            transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6">
+            {workshops.map((ws, i) => (
+              <motion.div
+                key={ws.number}
+                custom={i}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                variants={stagger}
+                whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+                className="relative flex flex-col lg:items-center group"
+              >
+                {/* Timeline node */}
+                <div className="absolute left-0 lg:static lg:mx-auto w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-white/10 bg-[#0A0A0D] flex items-center justify-center text-base md:text-lg font-black text-white/40 group-hover:border-accent group-hover:text-accent group-hover:shadow-[0_0_25px_rgba(239,68,68,0.25)] transition-all duration-300 z-10 shrink-0">
+                  {ws.number}
+                </div>
+
+                {/* Card Content */}
+                <div className="ml-16 lg:ml-0 lg:mt-8 card-vibrant p-6 flex-1 w-full flex flex-col text-left">
+                  <h3 className="text-lg font-bold text-foreground mb-4 group-hover:text-accent transition-colors duration-300">
+                    {ws.title}
+                  </h3>
+                  <div className="space-y-4 flex-1">
+                    {ws.items.map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-3">
+                        <span className="text-accent/60 mt-[3px] text-[10px] flex-shrink-0">✦</span>
+                        <span className="text-sm text-muted leading-relaxed font-medium">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Progressive fade bottom line */}
+                  <div className="mt-8 h-[2px] w-full bg-white/[0.03] overflow-hidden rounded-full">
+                    <div className="h-full w-4 group-hover:w-full bg-gradient-to-r from-accent to-purple-500 transition-all duration-500 ease-out" />
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
