@@ -194,6 +194,10 @@ export default function RegistrationForm() {
       // Accommodation
       params.append(ENTRY.accommodation, form.accommodation);
 
+      // Required for multi-section Google Forms — tells it all 4 sections were completed
+      params.append("pageHistory", "0,1,2,3");
+      params.append("submit", "Submit");
+
       await fetch(GOOGLE_FORM_URL, {
         method: "POST",
         mode: "no-cors",
