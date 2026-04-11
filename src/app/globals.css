@@ -45,21 +45,21 @@ body {
 
 /* ═══════ TYPOGRAPHY — MASSIVE, BOLD ═══════ */
 .display-hero {
-  font-size: clamp(5rem, 15vw, 14rem);
+  font-size: clamp(3rem, 12vw, 14rem);
   font-weight: 900;
   letter-spacing: -0.05em;
   line-height: 0.85;
 }
 
 .display-sub {
-  font-size: clamp(1.8rem, 5vw, 4rem);
+  font-size: clamp(1.6rem, 6vw, 4rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
 }
 
 .section-heading {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2rem, 6vw, 5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.95;
@@ -240,7 +240,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 40px;
+  padding: 14px 24px;
+  @media (min-width: 768px) {
+    padding: 16px 40px;
+  }
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -266,7 +269,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 40px;
+  padding: 14px 24px;
+  @media (min-width: 768px) {
+    padding: 16px 40px;
+  }
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.05em;

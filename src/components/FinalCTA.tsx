@@ -33,12 +33,12 @@ export default function FinalCTA() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: 0.2 }} className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/register" className="btn-primary text-base px-10 py-5"><span>Register Now →</span></Link>
-            <a href="#about" className="btn-outline text-base px-10 py-5">Learn More</a>
+            <Link href="/register" className="btn-primary text-base"><span>Register Now →</span></Link>
+            <a href="#about" className="btn-outline text-base">Learn More</a>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.3, delay: 0.4 }} className="flex items-center justify-center gap-6 mt-10 text-muted text-xs">
+            transition={{ duration: 0.3, delay: 0.4 }} className="flex flex-wrap items-center justify-center gap-4 mt-10 text-muted text-xs">
             {["Exciting Competitions", "Meals Included", "Certificates"].map((item) => (
               <span key={item} className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent" />{item}

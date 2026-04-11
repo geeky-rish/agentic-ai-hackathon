@@ -101,7 +101,7 @@ export default function HackathonSection() {
           transition={{ duration: 0.5, delay: 0.1 }} className="mb-10">
           <div className="flex items-baseline gap-4 mb-8">
             <span className="text-sm text-muted uppercase tracking-widest font-bold">Prize Pool</span>
-            <span className="text-5xl md:text-7xl font-black gradient-text-vibrant">₹30,000+</span>
+            <span className="text-5xl md:text-7xl font-black gradient-text-vibrant">₹30,000</span>
           </div>
         </motion.div>
 
