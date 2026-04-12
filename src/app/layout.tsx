@@ -46,7 +46,7 @@ export default function RootLayout({
         <div className="bg-image-container fixed inset-0 z-[-2]">
           <div className="absolute inset-0 bg-black/60 z-10 backdrop-blur-[2px]"></div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/bg_agentic.png" alt="Futuristic AI Background" className="w-full h-full object-cover opacity-60" />
+          <img src={`${process.env.NODE_ENV === 'production' ? '/agentic-ai-hackathon' : ''}/bg_agentic.png`} alt="Futuristic AI Background" className="w-full h-full object-cover opacity-60" />
         </div>
         <div className="noise-overlay" aria-hidden="true" />
         <AOSInit />

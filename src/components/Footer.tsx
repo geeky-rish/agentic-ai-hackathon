@@ -45,7 +45,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/kle-logo.png" alt="KLE Tech" className="h-10 w-auto brightness-200" />
+                <img src={`${process.env.NODE_ENV === 'production' ? '/agentic-ai-hackathon' : ''}/kle-logo.png`} alt="KLE Tech" className="h-10 w-auto brightness-200" />
                 <div className="h-8 w-px bg-white/20" />
                 <span className="text-3xl font-black text-white tracking-tighter">IGNITRIX</span>
               </div>
