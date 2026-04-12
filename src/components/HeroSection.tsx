@@ -237,7 +237,7 @@ export default function HeroSection() {
             <div className="relative w-36 h-36 md:w-48 md:h-48 mb-4">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/kle-logo.png"
+                src={`${process.env.NODE_ENV === 'production' ? '/agentic-ai-hackathon' : ''}/kle-logo.png`}
                 alt="IGNITRIX Logo"
                 className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.3)] hover:scale-105 transition-transform duration-300 brightness-110"
               />

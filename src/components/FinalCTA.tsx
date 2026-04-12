@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Sparkles, Send } from "lucide-react";
+import Link from "next/link";
 
 export default function FinalCTA() {
   const ref = useRef(null);
@@ -58,7 +59,7 @@ export default function FinalCTA() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-6"
           >
-            <a 
+            <Link 
               href="/register" 
               className="group relative px-12 py-6 bg-red-600 text-white font-black text-xl rounded-xl transition-all duration-300 hover:scale-105 hover:bg-red-500 shadow-[0_0_30px_rgba(239,68,68,0.4)] overflow-hidden"
             >
@@ -66,7 +67,7 @@ export default function FinalCTA() {
               <span className="relative flex items-center gap-3">
                 DEPLOY NOW <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </span>
-            </a>
+            </Link>
             
             <a 
               href="#about" 
