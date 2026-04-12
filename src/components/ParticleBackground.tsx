@@ -2,6 +2,59 @@
 
 import { useEffect, useRef } from "react";
 
+class Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  opacity: number;
+  color: string;
+  pulseSpeed: number;
+  pulsePhase: number;
+
+  constructor(w: number, h: number) {
+    this.x = Math.random() * w;
+    this.y = Math.random() * h;
+    this.vx = (Math.random() - 0.5) * 0.25;
+    this.vy = (Math.random() - 0.5) * 0.25;
+    this.size = Math.random() * 1.8 + 0.3;
+    this.opacity = Math.random() * 0.35 + 0.05;
+
+    // Extended color palette: indigo, purple, cyan
+    const colorRand = Math.random();
+    if (colorRand < 0.4) {
+      this.color = "124, 138, 255"; // indigo
+    } else if (colorRand < 0.7) {
+      this.color = "167, 139, 250"; // purple
+    } else {
+      this.color = "103, 232, 249"; // cyan
+    }
+
+    this.pulseSpeed = Math.random() * 0.02 + 0.008;
+    this.pulsePhase = Math.random() * Math.PI * 2;
+  }
+
+  update(w: number, h: number, time: number) {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    if (this.x < 0) this.x = w;
+    if (this.x > w) this.x = 0;
+    if (this.y < 0) this.y = h;
+    if (this.y > h) this.y = 0;
+
+    this.opacity = 0.05 + Math.sin(time * this.pulseSpeed + this.pulsePhase) * 0.12 + 0.12;
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+    ctx.fill();
+  }
+}
+
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -20,59 +73,6 @@ export default function ParticleBackground() {
       canvas.height = canvas.offsetHeight * window.devicePixelRatio;
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     };
-
-    class Particle {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      size: number;
-      opacity: number;
-      color: string;
-      pulseSpeed: number;
-      pulsePhase: number;
-
-      constructor(w: number, h: number) {
-        this.x = Math.random() * w;
-        this.y = Math.random() * h;
-        this.vx = (Math.random() - 0.5) * 0.25;
-        this.vy = (Math.random() - 0.5) * 0.25;
-        this.size = Math.random() * 1.8 + 0.3;
-        this.opacity = Math.random() * 0.35 + 0.05;
-
-        // Extended color palette: indigo, purple, cyan
-        const colorRand = Math.random();
-        if (colorRand < 0.4) {
-          this.color = "124, 138, 255"; // indigo
-        } else if (colorRand < 0.7) {
-          this.color = "167, 139, 250"; // purple
-        } else {
-          this.color = "103, 232, 249"; // cyan
-        }
-
-        this.pulseSpeed = Math.random() * 0.02 + 0.008;
-        this.pulsePhase = Math.random() * Math.PI * 2;
-      }
-
-      update(w: number, h: number, time: number) {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x < 0) this.x = w;
-        if (this.x > w) this.x = 0;
-        if (this.y < 0) this.y = h;
-        if (this.y > h) this.y = 0;
-
-        this.opacity = 0.05 + Math.sin(time * this.pulseSpeed + this.pulsePhase) * 0.12 + 0.12;
-      }
-
-      draw(ctx: CanvasRenderingContext2D) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
-        ctx.fill();
-      }
-    }
 
     const init = () => {
       resize();

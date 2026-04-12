@@ -6,6 +6,8 @@ import TimelineSection from "@/components/TimelineSection";
 import LiveStatsBar from "@/components/LiveStatsBar";
 import TeamSection from "@/components/TeamSection";
 import FAQSection from "@/components/FAQSection";
+import MapSection from "@/components/MapSection";
+import CrossingMarquee from "@/components/CrossingMarquee";
 import FinalCTA from "@/components/FinalCTA";
 
 export default function Home() {
@@ -13,13 +15,17 @@ export default function Home() {
     <>
       <HeroSection />
       <AboutSection />
+      <CrossingMarquee />
       <SessionsSection />
       <HackathonSection />
+      <CrossingMarquee />
       <TimelineSection />
       <LiveStatsBar />
       <TeamSection />
       <FAQSection />
+      <MapSection />
       <FinalCTA />
     </>
   );
 }
+

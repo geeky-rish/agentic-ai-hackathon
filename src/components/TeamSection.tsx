@@ -53,6 +53,7 @@ export default function TeamSection() {
                 <motion.div key={member.name} custom={i} initial="hidden"
                   animate={isInView ? "visible" : "hidden"} variants={stagger}
                   whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+                  data-aos="flip-left" data-aos-delay={String(i * 100)}
                   className="card-vibrant p-6 text-center group relative">
                   <div className="w-18 h-18 mx-auto mb-4 rounded-full bg-gradient-to-br from-red-500/10 via-purple-500/10 to-indigo-500/10 border-2 border-white/6 flex items-center justify-center group-hover:border-accent/25 group-hover:shadow-[0_0_20px_rgba(239,68,68,0.1)] transition-all duration-300">
                     <svg className="w-8 h-8 text-white/15 group-hover:text-accent/40 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>

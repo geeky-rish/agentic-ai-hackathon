@@ -1,71 +1,168 @@
+"use client";
+
 import Link from "next/link";
-import Image from "next/image";
-import kleLogo from "../../public/kle-logo.png";
+import { Mail, ArrowUpRight, Heart, Code2 } from "lucide-react";
+
+const InstagramIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
+const LinkedinIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const TwitterIcon = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+  </svg>
+);
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative border-t border-white/[0.06] bg-[#09090B]">
-      <div className="container-main py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <Image src={kleLogo} alt="KLE Tech" className="object-contain brightness-110" style={{ height: "1.8rem", width: "auto" }} />
-              <span className="w-px h-5 bg-white/10" />
-              <span className="text-lg font-black text-foreground tracking-tight">IGNITRIX</span>
-              <span className="text-xs text-muted">/ 2026</span>
+    <footer className="relative bg-[#050505] pt-24 pb-12 overflow-hidden border-t border-white/5">
+      {/* Background Glows */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-500/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-500/5 blur-[120px] rounded-full pointer-events-none" />
+
+      {/* Diagonal Split/Ribbon at top of footer */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-purple-500 to-cyan-500 opacity-30" />
+
+      <div className="container-main relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+          
+          {/* Brand & Mission Column */}
+          <div className="lg:col-span-5 space-y-8">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/kle-logo.png" alt="KLE Tech" className="h-10 w-auto brightness-200" />
+                <div className="h-8 w-px bg-white/20" />
+                <span className="text-3xl font-black text-white tracking-tighter">IGNITRIX</span>
+              </div>
+              <p className="text-gray-400 text-base leading-relaxed max-w-md font-mono">
+                The flagship AI Hackathon of <span className="text-white font-bold">KLE Technological University</span>. 
+                Pioneering the next wave of autonomous intelligence, one agent at a time.
+              </p>
             </div>
-            <p className="text-xs text-muted leading-relaxed max-w-xs">
-              Empowering the next generation of AI innovators through hands-on learning and collaborative building at KLE Technological University, Hubballi.
-            </p>
+            
+            <div className="flex gap-4">
+              {[
+                { icon: <InstagramIcon size={20} />, href: "#", label: "Instagram", color: "hover:text-pink-500 hover:border-pink-500/50" },
+                { icon: <LinkedinIcon size={20} />, href: "#", label: "LinkedIn", color: "hover:text-blue-500 hover:border-blue-500/50" },
+                { icon: <TwitterIcon size={20} />, href: "#", label: "Twitter", color: "hover:text-cyan-400 hover:border-cyan-400/50" },
+              ].map((social) => (
+                <a 
+                  key={social.label} 
+                  href={social.href}
+                  className={`w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 transition-all duration-300 ${social.color} hover:bg-white/10 shadow-lg`}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Links */}
-          <div>
-            <h4 className="text-xs font-bold text-muted mb-6 tracking-widest uppercase">Quick Links</h4>
-            <ul className="space-y-3">
+          {/* Quick Links Column */}
+          <div className="lg:col-span-3">
+            <h4 className="text-white font-black text-sm uppercase tracking-[0.2em] mb-8 border-l-2 border-red-500 pl-4">
+              Navigation
+            </h4>
+            <ul className="space-y-4">
               {[
-                { label: "About", href: "/#about" },
-                { label: "Sessions", href: "/#sessions" },
-                { label: "Themes", href: "/#hackathon" },
-                { label: "Timeline", href: "/#timeline" },
-                { label: "FAQ", href: "/#faq" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-xs text-muted hover:text-accent transition-colors">{link.label}</Link>
+                { name: "About", href: "/#about" },
+                { name: "Sessions", href: "/#sessions" },
+                { name: "Tracks", href: "/#hackathon" },
+                { name: "Timeline", href: "/#timeline" },
+                { name: "FAQ", href: "/#faq" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link 
+                    href={item.href}
+                    className="group flex items-center gap-2 text-gray-400 hover:text-white transition-colors font-mono text-sm"
+                  >
+                    <span className="w-0 group-hover:w-4 h-px bg-red-400 transition-all duration-300" />
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="text-xs font-bold text-muted mb-6 tracking-widest uppercase">Get in Touch</h4>
-            <a href="mailto:kleignitrix@gmail.com" className="text-xs text-muted hover:text-accent transition-colors flex items-center gap-2">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-              </svg>
-              kleignitrix@gmail.com
-            </a>
-            <div className="flex gap-2 mt-6">
-              {[
-                { label: "GitHub", icon: <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> },
-                { label: "Instagram", icon: <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> },
-              ].map((s) => (
-                <a key={s.label} href="#" aria-label={s.label}
-                  className="w-9 h-9 rounded-lg bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-muted hover:text-accent hover:border-accent/20 transition-all duration-200">
-                  {s.icon}
-                </a>
-              ))}
+          {/* Location & Contact Column */}
+          <div className="lg:col-span-4">
+            <h4 className="text-white font-black text-sm uppercase tracking-[0.2em] mb-8 border-l-2 border-purple-500 pl-4">
+              Mission Control
+            </h4>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0">
+                  <Mail size={18} />
+                </div>
+                <div>
+                  <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">Email Us</p>
+                  <a href="mailto:kleignitrix@gmail.com" className="text-white hover:text-purple-400 transition-colors font-bold tracking-tight">
+                    kleignitrix@gmail.com
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 shrink-0">
+                  <Heart size={18} />
+                </div>
+                <div>
+                  <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">Location</p>
+                  <p className="text-white font-bold tracking-tight">
+                    KLE Tech University, Hubballi
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/[0.06] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[10px] text-white/20 uppercase tracking-wider">© 2026 IGNITRIX — KLE Technological University. All rights reserved.</p>
-          <p className="text-[10px] text-white/20 uppercase tracking-wider">Built with ♥ by the organizing team</p>
+        {/* Big Background Text */}
+        <div className="relative py-12 flex justify-center items-center opacity-5 select-none pointer-events-none">
+          <span className="text-[15vw] font-black text-white tracking-tighter leading-none">
+            IGNITRIX
+          </span>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2 text-[10px] uppercase font-mono tracking-[0.2em] text-gray-500">
+            <span>© {currentYear} IGNITRIX</span>
+            <span className="w-1 h-1 rounded-full bg-gray-700" />
+            <span>KLE TECHNOLOGICAL UNIVERSITY</span>
+          </div>
+          
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 text-[10px] uppercase font-mono tracking-[0.2em] text-gray-500 group cursor-pointer">
+              <span>Built by Team Ignitrix</span>
+              <Code2 size={12} className="group-hover:text-red-500 transition-colors" />
+            </div>
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="group flex items-center gap-2 text-[10px] uppercase font-mono tracking-[0.2em] text-white/40 hover:text-white transition-colors"
+            >
+              Back to Top
+              <ArrowUpRight size={14} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Scratched Texture Overlay */}
+      <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none" />
     </footer>
   );
 }

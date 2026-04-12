@@ -78,28 +78,61 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
-            className="md:hidden bg-[#09090B]/95 backdrop-blur-xl border-t border-white/5 overflow-hidden"
-          >
-            <div className="container-main py-6 flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <Link key={link.href} href={getHref(link.href)} onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-sm font-medium text-muted hover:text-foreground transition-colors">
-                  {link.label}
-                </Link>
-              ))}
-              <Link href="/register" onClick={() => setMobileOpen(false)} className="mt-4 btn-primary text-sm rounded-lg">
-                <span>Register Now</span>
-              </Link>
-            </div>
-          </motion.div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMobileOpen(false)}
+              className="md:hidden fixed inset-0 z-40 bg-black/60"
+            />
+            {/* Drawer */}
+            <motion.div
+              initial={{ x: 300 }}
+              animate={{ x: 0 }}
+              exit={{ x: 300 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="md:hidden fixed top-0 right-0 bottom-0 z-50 w-72 flex flex-col"
+              style={{ background: "rgba(10, 10, 10, 0.97)", backdropFilter: "blur(16px)" }}
+            >
+              <div className="flex justify-end p-4">
+                <button onClick={() => setMobileOpen(false)} className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-muted hover:text-foreground cursor-pointer" aria-label="Close menu">
+                  ✕
+                </button>
+              </div>
+              <motion.nav
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={{ open: { transition: { staggerChildren: 0.08 } }, closed: { transition: { staggerChildren: 0.05, staggerDirection: -1 } } }}
+                className="flex flex-col gap-1 px-6 flex-1"
+              >
+                {navLinks.map((link) => (
+                  <motion.div key={link.href}
+                    variants={{ open: { y: 0, opacity: 1 }, closed: { y: 20, opacity: 0 } }}
+                    transition={{ duration: 0.2 }}>
+                    <Link href={getHref(link.href)} onClick={() => setMobileOpen(false)}
+                      className="block px-4 py-3 text-base font-medium text-muted hover:text-foreground hover:text-accent transition-colors">
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  variants={{ open: { y: 0, opacity: 1 }, closed: { y: 20, opacity: 0 } }}
+                  transition={{ duration: 0.2 }}
+                  className="mt-6">
+                  <Link href="/register" onClick={() => setMobileOpen(false)} className="btn-primary btn-register text-sm rounded-lg w-full">
+                    <span>Register Now</span>
+                  </Link>
+                </motion.div>
+              </motion.nav>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.nav>

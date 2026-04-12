@@ -1,12 +1,10 @@
 import type { NextConfig } from "next";
 
-const isGithubPages = process.env.GITHUB_ACTIONS === 'true';
-
 const nextConfig: NextConfig = {
-  output: 'export',
-  basePath: isGithubPages ? '/agentic-ai-hackathon' : '',
-  assetPrefix: isGithubPages ? '/agentic-ai-hackathon/' : '',
+  // Standard Vercel configuration
+  // No static export needed for Vercel unless explicitly building a static-only site
   images: {
+    // Keep unoptimized for now to prevent potential Vercel Image Optimization limits/errors if not set up properly, or you can remove it. Let's keep it safe.
     unoptimized: true,
   },
 };

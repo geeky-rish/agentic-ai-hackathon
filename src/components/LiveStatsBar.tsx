@@ -2,28 +2,36 @@
 
 import { motion, useInView, Variants } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { ClipboardList, Users, Landmark, Trophy } from "lucide-react";
 
 const stats = [
-  { label: "Registrations", target: 100, suffix: "+", icon: "📝" },
-  { label: "Teams Active", target: 15, suffix: "+", icon: "👥" },
-  { label: "Colleges", target: 10, suffix: "+", icon: "🏛️" },
-  { label: "Prize Pool", target: 30, suffix: "K+", prefix: "₹", icon: "🏆" },
+  { label: "Registrations", target: 100, suffix: "+", icon: <ClipboardList size={32} className="text-accent" /> },
+  { label: "Teams Active", target: 15, suffix: "+", icon: <Users size={32} className="text-accent" /> },
+  { label: "Colleges", target: 10, suffix: "+", icon: <Landmark size={32} className="text-accent" /> },
+  { label: "Prize Pool", target: 30, suffix: "K+", prefix: "₹", icon: <Trophy size={32} className="text-accent" /> },
 ];
 
 function AnimatedCounter({ target, prefix = "", suffix = "", isInView }: { target: number; prefix?: string; suffix?: string; isInView: boolean }) {
   const [count, setCount] = useState(0);
+  const [done, setDone] = useState(false);
   useEffect(() => {
     if (!isInView) return;
-    let start = 0;
-    const increment = target / (1500 / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) { setCount(target); clearInterval(timer); }
-      else setCount(Math.floor(start));
-    }, 16);
-    return () => clearInterval(timer);
+    let startTime = 0;
+    const duration = 2000;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        setDone(true);
+      }
+    };
+    requestAnimationFrame(step);
   }, [isInView, target]);
-  return <span className="font-black text-3xl md:text-5xl gradient-text-vibrant tabular-nums">{prefix}{count}{suffix}</span>;
+  return <span className="font-black text-3xl md:text-5xl gradient-text-vibrant tabular-nums">{prefix}{count}{done ? suffix : ""}</span>;
 }
 
 const stagger: Variants = {
@@ -55,8 +63,9 @@ export default function LiveStatsBar() {
             <motion.div key={stat.label} custom={i} initial="hidden"
               animate={isInView ? "visible" : "hidden"} variants={stagger}
               whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+              data-aos="zoom-in" data-aos-delay={String(i * 100)}
               className="card-vibrant p-6 md:p-8 text-center">
-              <span className="text-3xl mb-3 block">{stat.icon}</span>
+              <span className="mb-4 flex justify-center">{stat.icon}</span>
               <AnimatedCounter target={stat.target} prefix={stat.prefix} suffix={stat.suffix} isInView={isInView} />
               <p className="text-[10px] text-muted mt-2 font-bold uppercase tracking-widest">{stat.label}</p>
             </motion.div>

@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AOSInit from "@/components/AOSInit";
+import BackgroundBlobs from "@/components/BackgroundBlobs";
+
 
 const inter = Inter({
   variable: "--font-inter",
@@ -39,10 +42,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="min-h-screen" suppressHydrationWarning>
+      <body className="min-h-screen relative" suppressHydrationWarning>
+        <div className="bg-image-container fixed inset-0 z-[-2]">
+          <div className="absolute inset-0 bg-black/60 z-10 backdrop-blur-[2px]"></div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/bg_agentic.png" alt="Futuristic AI Background" className="w-full h-full object-cover opacity-60" />
+        </div>
         <div className="noise-overlay" aria-hidden="true" />
+        <AOSInit />
+        <BackgroundBlobs />
         <Navbar />
-        <main>{children}</main>
+        <main className="relative z-0 mt-[80px]">{children}</main>
+
         <Footer />
       </body>
     </html>

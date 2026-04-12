@@ -2,39 +2,56 @@
 
 import { motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
+import { BookOpen, Database, Network, Brain, ArrowRight } from "lucide-react";
 
 const workshops = [
   {
-    number: "01",
+    number: "S1",
     title: "Agentic AI Overview",
+    icon: <BookOpen className="w-6 h-6" />,
+    color: "from-red-500 to-orange-500",
+    glow: "shadow-[0_0_20px_rgba(239,68,68,0.2)]",
     items: [
-      "Agents, architecture, workflows, lifecycle",
-      "Real-world use cases + demo",
+      "Agents, architecture, workflows, and lifecycle.",
+      "Real-world use cases + hands-on demo.",
     ],
+    outcome: "Agent Fundamentals"
   },
   {
-    number: "02",
-    title: "RAG, LangChain & MCP",
+    number: "S2",
+    title: "RAG, Langchain and MCP",
+    icon: <Database className="w-6 h-6" />,
+    color: "from-blue-500 to-indigo-500",
+    glow: "shadow-[0_0_20px_rgba(59,130,246,0.2)]",
     items: [
-      "RAG basics, pipelines, frameworks",
-      "MCP systems + demo",
+      "RAG basics, agent frameworks, and pipelines.",
+      "MCPs in agent systems + hands-on demo.",
     ],
+    outcome: "Data-Driven Intelligence"
   },
   {
-    number: "03",
+    number: "S3",
     title: "Multi-Agent Systems (MAS)",
+    icon: <Network className="w-6 h-6" />,
+    color: "from-purple-500 to-pink-500",
+    glow: "shadow-[0_0_20px_rgba(168,85,247,0.2)]",
     items: [
-      "LangGraph & AutoGen",
-      "Distributed agent systems",
+      "Designing MAS with LangGraph & AutoGen.",
+      "Distributed agents + hands-on demo.",
     ],
+    outcome: "Collaborative Swarms"
   },
   {
-    number: "04",
+    number: "S4",
     title: "Learning Agents (RL)",
+    icon: <Brain className="w-6 h-6" />,
+    color: "from-emerald-400 to-cyan-500",
+    glow: "shadow-[0_0_20px_rgba(52,211,153,0.2)]",
     items: [
-      "RL intuition",
-      "Adaptive intelligent agents",
+      "RL intuition and adaptive agents.",
+      "Hands-on demo.",
     ],
+    outcome: "Evolving Intelligence"
   },
 ];
 
@@ -56,8 +73,9 @@ export default function SessionsSection() {
     <section id="sessions" className="relative py-28 md:py-36 bg-vibrant-2 overflow-hidden">
       {/* Background decorations */}
       <div className="grid-bg" />
-      <div className="absolute top-1/2 -translate-y-1/2 right-0 w-[600px] h-[600px] rounded-full bg-red-500/4 blur-[180px]" />
-      <div className="absolute top-1/3 left-0 w-[400px] h-[400px] rounded-full bg-indigo-500/3 blur-[150px]" />
+      <div className="absolute top-0 right-0 w-[800px] h-[600px] rounded-full bg-red-500/[0.03] blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-indigo-500/[0.03] blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full bg-purple-500/[0.02] blur-[200px] pointer-events-none" />
 
       <div ref={ref} className="container-main relative z-10">
         {/* Header Section */}
@@ -100,23 +118,37 @@ export default function SessionsSection() {
 
         {/* Timeline Layout */}
         <div className="relative mt-8 md:mt-20">
-          {/* Desktop connecting line */}
-          <div className="hidden lg:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-white/10" />
+          {/* Desktop connecting line with flow dot */}
+          <div className="hidden lg:block absolute top-7 left-[12.5%] right-[12.5%] h-px bg-white/10" />
           <motion.div
-            className="hidden lg:block absolute top-6 left-[12.5%] right-[12.5%] h-[2px] bg-gradient-to-r from-accent via-purple-500 to-indigo-500 origin-left"
+            className="hidden lg:block absolute top-[27px] left-[12.5%] right-[12.5%] h-[2px] bg-gradient-to-r from-red-500 via-purple-500 to-indigo-500 origin-left"
             initial={{ scaleX: 0 }}
             animate={isInView ? { scaleX: 1 } : {}}
             transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
-          />
-
-          {/* Mobile connecting line */}
+          >
+            {/* Pulsing data packet (Desktop) */}
+            <motion.div 
+              className="absolute top-[-4px] left-0 w-2.5 h-2.5 bg-white rounded-full shadow-[0_0_15px_#fff]"
+              animate={{ left: "100%" }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            />
+          </motion.div>
+ 
+          {/* Mobile connecting line with flow dot */}
           <div className="lg:hidden absolute top-6 bottom-6 left-6 w-px bg-white/10" />
           <motion.div
-            className="lg:hidden absolute top-6 bottom-6 left-6 w-[2px] bg-gradient-to-b from-accent via-purple-500 to-indigo-500 origin-top"
+            className="lg:hidden absolute top-6 bottom-6 left-6 w-[2px] bg-gradient-to-b from-red-500 via-purple-500 to-indigo-500 origin-top"
             initial={{ scaleY: 0 }}
             animate={isInView ? { scaleY: 1 } : {}}
             transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
-          />
+          >
+            {/* Pulsing data packet (Mobile) */}
+            <motion.div 
+              className="absolute left-[-4px] top-0 w-2.5 h-2.5 bg-white rounded-full shadow-[0_0_15px_#fff]"
+              animate={{ top: "100%" }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            />
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-6">
             {workshops.map((ws, i) => (
@@ -126,33 +158,56 @@ export default function SessionsSection() {
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
                 variants={stagger}
-                whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
                 className="relative flex flex-col lg:items-center group"
               >
                 {/* Timeline node */}
-                <div className="absolute left-0 lg:static lg:mx-auto w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-white/10 bg-[#0A0A0D] flex items-center justify-center text-base md:text-lg font-black text-white/40 group-hover:border-accent group-hover:text-accent group-hover:shadow-[0_0_25px_rgba(239,68,68,0.25)] transition-all duration-300 z-10 shrink-0">
+                <div className={`relative mb-8 lg:mb-12 w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-black border border-white/10 flex items-center justify-center text-xl font-black text-white/20 group-hover:border-white group-hover:text-white group-hover:rotate-6 transition-all duration-500 z-10 shrink-0 ${ws.glow}`}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
                   {ws.number}
                 </div>
-
+ 
                 {/* Card Content */}
-                <div className="ml-16 lg:ml-0 lg:mt-8 card-vibrant p-6 flex-1 w-full flex flex-col text-left">
-                  <h3 className="text-lg font-bold text-foreground mb-4 group-hover:text-accent transition-colors duration-300">
-                    {ws.title}
-                  </h3>
-                  <div className="space-y-4 flex-1">
-                    {ws.items.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <span className="text-accent/60 mt-[3px] text-[10px] flex-shrink-0">✦</span>
-                        <span className="text-sm text-muted leading-relaxed font-medium">
-                          {item}
-                        </span>
+                <div className="ml-16 lg:ml-0 card-vibrant p-1 p-[1px] bg-gradient-to-br from-white/10 to-transparent group-hover:from-white/20 transition-all rounded-3xl w-full flex-1">
+                  <div className="bg-[#09090b]/90 backdrop-blur-2xl rounded-[23px] p-7 md:p-8 h-full flex flex-col">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${ws.color} p-[1px]`}>
+                        <div className="w-full h-full bg-black/40 backdrop-blur-md rounded-[11px] flex items-center justify-center text-white">
+                          {ws.icon}
+                        </div>
                       </div>
-                    ))}
-                  </div>
+                      <div className="flex gap-1">
+                        {[1, 2, 3].map(j => (
+                          <div key={j} className="w-1 h-1 rounded-full bg-white/10 group-hover:bg-white/30 transition-colors" />
+                        ))}
+                      </div>
+                    </div>
 
-                  {/* Progressive fade bottom line */}
-                  <div className="mt-8 h-[2px] w-full bg-white/[0.03] overflow-hidden rounded-full">
-                    <div className="h-full w-4 group-hover:w-full bg-gradient-to-r from-accent to-purple-500 transition-all duration-500 ease-out" />
+                    <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-white transition-colors duration-300">
+                      {ws.title}
+                    </h3>
+
+                    <div className="space-y-4 flex-1">
+                      {ws.items.map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-3 group/item">
+                          <div className={`mt-[6px] w-1.5 h-1.5 rounded-full bg-gradient-to-r ${ws.color} group-hover/item:scale-125 transition-transform`} />
+                          <span className="text-sm text-gray-400 group-hover/item:text-gray-200 transition-colors leading-relaxed font-mono">
+                            {item}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Footer Badge */}
+                    <div className="mt-8 pt-6 border-t border-white/5 flex items-center justify-between">
+                      <div className="flex flex-col">
+                        <span className="text-[10px] text-gray-500 uppercase tracking-widest font-black mb-1">Key Outcome</span>
+                        <span className="text-xs text-white font-bold">{ws.outcome}</span>
+                      </div>
+                      <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gray-500 group-hover:text-white group-hover:bg-white/10 transition-all">
+                        <ArrowRight size={14} />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
