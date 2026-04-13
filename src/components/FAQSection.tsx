@@ -118,7 +118,7 @@ export default function FAQSection() {
             </div>
             <div>
               <h4 className="text-white font-bold">Still have questions?</h4>
-              <p className="text-gray-400 text-sm">Join our discord or reach out via email.</p>
+              <p className="text-gray-400 text-sm">Join our whatsapp group or reach out via email.</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-4 mt-4 md:mt-0">
@@ -129,10 +129,12 @@ export default function FAQSection() {
               Email Us
             </a>
             <a 
-              href="#" 
+              href="https://chat.whatsapp.com/K1H6yVuvTVABzIGJvQiljo"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-3 bg-transparent border border-white/20 text-white font-bold rounded-lg hover:bg-white/10 transition-colors text-center flex-1 md:flex-none"
             >
-              Join Discord
+              Join WhatsApp
             </a>
           </div>
         </motion.div>
