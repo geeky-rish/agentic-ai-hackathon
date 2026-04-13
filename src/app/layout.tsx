@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AOSInit from "@/components/AOSInit";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
+import Script from "next/script";
 
 
 const inter = Inter({
@@ -43,6 +44,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} antialiased`}>
       <body className="min-h-screen relative" suppressHydrationWarning>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-28BTL9KQ5V"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-28BTL9KQ5V');
+          `}
+        </Script>
         <div className="bg-image-container fixed inset-0 z-[-2]">
           <div className="absolute inset-0 bg-black/60 z-10 backdrop-blur-[2px]"></div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
