@@ -197,7 +197,7 @@ export default function HackathonSection() {
               <div className="relative w-28 h-28 mb-8 group-hover:scale-110 transition-transform duration-500">
                 <div className="absolute inset-0 bg-red-500/20 blur-xl rounded-full animate-pulse" />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`${process.env.NODE_ENV === 'production' ? '/agentic-ai-hackathon' : ''}/kle-logo.png`} alt="KLE Logo" className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.6)]" />
+                <img src="/kle-logo.png" alt="KLE Logo" className="relative z-10 w-full h-full object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.6)]" />
                 <div className="absolute inset-0 border border-red-500/30 rounded-full animate-spin" style={{ animationDuration: "10s" }} />
               </div>
               <h4 className="text-white font-black text-2xl uppercase mb-2">Mission Reward</h4>
