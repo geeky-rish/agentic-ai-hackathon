@@ -65,9 +65,9 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link href="/register" className="btn-primary text-xs px-6 py-2.5 rounded-lg">
-            <span>Register →</span>
-          </Link>
+          <div className="btn-primary text-xs px-6 py-2.5 rounded-lg opacity-50 cursor-not-allowed">
+            <span>Registrations Closed</span>
+          </div>
         </div>
 
         {/* Mobile Hamburger */}
@@ -126,9 +126,9 @@ export default function Navbar() {
                   variants={{ open: { y: 0, opacity: 1 }, closed: { y: 20, opacity: 0 } }}
                   transition={{ duration: 0.2 }}
                   className="mt-6">
-                  <Link href="/register" onClick={() => setMobileOpen(false)} className="btn-primary btn-register text-sm rounded-lg w-full">
-                    <span>Register Now</span>
-                  </Link>
+                  <div className="btn-primary btn-register text-sm rounded-lg w-full opacity-50 cursor-not-allowed">
+                    <span>Registrations Closed</span>
+                  </div>
                 </motion.div>
               </motion.nav>
             </motion.div>

@@ -129,7 +129,6 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.1 }}>
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold tracking-widest uppercase mb-6 animate-pulse">
               <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
-              REGISTRATIONS OPEN
             </span>
           </motion.div>
 
@@ -193,12 +192,12 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 mb-6"
           >
-            <Link href="/register" className="relative group inline-block cursor-pointer w-full sm:w-auto text-center">
-              <div className="absolute inset-0 bg-white/30 skew-x-[-10deg] transform translate-x-[4px] translate-y-[4px] group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-300" />
-              <div className="relative z-10 bg-red-600 text-white px-6 py-3 md:px-10 md:py-4 font-bold text-lg md:text-xl skew-x-[-10deg] border border-transparent group-hover:border-white group-hover:bg-white group-hover:text-red-600 transition-all duration-300">
-                <span className="block skew-x-[10deg]">REGISTER NOW</span>
+            <div className="relative group inline-block cursor-not-allowed w-full sm:w-auto text-center opacity-70">
+              <div className="absolute inset-0 bg-white/10 skew-x-[-10deg] transform translate-x-[4px] translate-y-[4px]" />
+              <div className="relative z-10 bg-zinc-800 text-zinc-400 px-6 py-3 md:px-10 md:py-4 font-bold text-lg cursor-not-allowed md:text-xl skew-x-[-10deg] border border-transparent">
+                <span className="block skew-x-[10deg]">REGISTRATIONS CLOSED</span>
               </div>
-            </Link>
+            </div>
 
             <a href="#hackathon" className="relative group inline-block cursor-pointer w-full sm:w-auto text-center">
               <div className="absolute inset-0 bg-purple-500 skew-x-[-10deg] transform translate-x-[4px] translate-y-[4px] group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-300" />

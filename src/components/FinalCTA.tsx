@@ -48,7 +48,7 @@ export default function FinalCTA() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-gray-400 text-lg md:text-xl max-w-2xl mb-12 font-mono"
           >
-            {"// REGISTER YOUR SQUAD FOR THE BIGGEST AI REVOLUTION"}
+            {"// REGISTRATIONS ARE NOW CLOSED"}
             <br />
             <span className="text-white/60">Limited capacity. Secured deployment protocols active.</span>
           </motion.p>
@@ -59,15 +59,13 @@ export default function FinalCTA() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-6"
           >
-            <Link 
-              href="/register" 
-              className="group relative px-12 py-6 bg-red-600 text-white font-black text-xl rounded-xl transition-all duration-300 hover:scale-105 hover:bg-red-500 shadow-[0_0_30px_rgba(239,68,68,0.4)] overflow-hidden"
+            <div
+              className="group relative px-12 py-6 bg-zinc-800 text-zinc-400 font-black text-xl rounded-xl opacity-70 cursor-not-allowed border border-white/10"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
               <span className="relative flex items-center gap-3">
-                DEPLOY NOW <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                REGISTRATIONS CLOSED <Send size={20} />
               </span>
-            </Link>
+            </div>
             
             <a 
               href="#about" 
@@ -85,7 +83,7 @@ export default function FinalCTA() {
             className="mt-12 flex items-center gap-3 text-red-500/60 font-mono text-sm uppercase tracking-widest"
           >
             <span className="w-2 h-2 bg-red-500 rounded-full animate-ping" />
-            200+ AGENTS ALREADY REGISTERED
+            ALL AGENTS DEPLOYED. MISSIONS ACTIVE.
           </motion.div>
         </div>
       </div>

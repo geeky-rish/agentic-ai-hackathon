@@ -207,13 +207,12 @@ export default function HackathonSection() {
               <div className="text-gray-500 font-mono text-[10px] uppercase tracking-widest mb-8">
                 {"// REGISTRATION FEE: ₹100 PER MEMBER"}
               </div>
-              <Link href="/register" className="relative group/btn w-full max-w-xs">
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-500 via-purple-500 to-indigo-500 rounded-lg blur opacity-50 group-hover/btn:opacity-100 transition duration-300" />
-                <div className="relative bg-black text-white font-bold py-4 px-8 rounded-lg border border-white/20 flex items-center justify-center gap-3 group-hover/btn:bg-gray-900 transition-colors">
-                  <span>ACCEPT MISSION</span>
-                  <ArrowUpRight size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+              <div className="relative group/btn w-full max-w-xs opacity-50 cursor-not-allowed">
+                <div className="relative bg-zinc-800 text-zinc-400 font-bold py-4 px-8 rounded-lg border border-white/10 flex items-center justify-center gap-3">
+                   <span>REGISTRATIONS CLOSED</span>
+                   <ArrowUpRight size={16} />
                 </div>
-              </Link>
+              </div>
             </div>
           </div>
         </div>
